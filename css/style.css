@@ -26,14 +26,10 @@ form {
   display: inline-block;
 }
 
-.add-bar,
-.remove-bar,
+.addBar,
+.removeBar,
 button {
   background-color: #26a69a !important;
-}
-
-footer {
-  /* min-height: 200px */
 }
 
 
