@@ -58,7 +58,7 @@ let updateStock = function (message) {
   setTimeout(() => {
     document.querySelector(`.${message}`).innerHTML = "";
     document.querySelector(`#${message}`).classList.add("hidden");
-  }, 5000)
+  }, 6000)
   return false //prevent form from reloading page
 }
 
