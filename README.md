@@ -9,7 +9,7 @@ Download source and run index.html
 ## Tests
 
 ```
-Run /test/test.html to view tests 
+Run /test/test.html to view tests.
 
 Unit tests JavaScript at /test/StockManager.test.js
 ```
