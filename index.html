@@ -19,7 +19,7 @@
         {{#each products}}
         <div class="col s12 m4">
             <div class="icon-block">
-                <h2 class="center"><i class="material-icons">image</i></h2>
+                <h2 class="center"><i class="material-icons">insert_chart</i></h2>
                 <h5 class="center">{{this.name}}</h5>
                 <table>
                     <thead>
@@ -73,7 +73,9 @@
             <h3 class="header center black-text">Stock-Management System</h3>
             <div class="row center">
                 <h5 class="header col s12 light">A simplified way to manage your inventory.</h5>
+              
             </div>
+            <hr>
         </div>
     </div>
     <br>
@@ -90,6 +92,7 @@
             </div>
         </div>
         <div class="row container">
+            <br><br>
             <div class="col s12 l3"></div>
             <form id="add-stock-form" class="col s12 l6" onsubmit=" return updateStock('addMessage')">
                 <div class="row">
@@ -136,6 +139,7 @@
             </div>
         </div>
         <div class="row container">
+            <br><br>
             <div class="col s12 l3"></div>
             <form id="remove-stock-form" class="col s12 l6" onsubmit="return updateStock('removeMessage')">
                 <div class="row">
@@ -146,7 +150,6 @@
                         <label>Select Product Code</label>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="input-field">
                         <i class="material-icons prefix">mail</i>
@@ -162,9 +165,8 @@
                         <label for="itemsToRemove">Quantity To Remove</label>
                     </div>
                 </div>
-
                 <div class="row center">
-                    <div class="center">
+                    <div class="center col l12">
                     <button id="removeItemsBtn" class="btn waves-effect" type="submit" name="">Submit
                         <i class="material-icons right">send</i>
                     </button>
@@ -172,11 +174,10 @@
                 </div>
                 <div id="removeMessageBox" class="row"></div>
             </form>
+            <br>
             <div class="col s12 l3"></div>
         </div>
     </div>
-    <br><br>
-
     <footer class="page-footer black">
         <div class="container">
             <div class="row">
