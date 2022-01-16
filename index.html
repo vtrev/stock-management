@@ -1,14 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
     <title>Stock-Management</title>
 
-    <link rel="stylesheet" href="./style/style.css">
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Handlebars -->
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script type="text/x-template" id="stockLevelsTemplate">
+        {{#each products}}
+        <div class="col s12 m4">
+            <div class="icon-block">
+                <h2 class="center"><i class="material-icons">image</i></h2>
+                <h5 class="center">{{this.name}}</h5>
+                <table>
+                    <thead>
+                        <th>Stock Level</th>
+                        <th>Average Price</th>
+                    </thead>
+                    <tbody>
+                        <td>{{this.quantity}}</td>
+                        {{#if this.averagePrice}}
+                        <td>R {{this.averagePrice}}</td>
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <script type="text/x-template" id="codeSelectorTemplate">
+        <option value="" disabled selected required>Product Code</option>
+        {{#each productCodes}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </script>
+    <script type="text/x-template" id="messageBoxTemplate">
+        <div id="{{class}}" class="col l12 s12 alert card {{code}} white-text">
+            <div class="{{class}} card-content">
+                <p><i class="material-icons">{{icon}}</i>{{res}}</p>
+            </div>
+        </div>
+    </script>
+
+
 </head>
+
 <body>
+    <div class="navbar-fixed scrollspy" id="home">
+        <nav class="black darken-1" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="#home" class="brand-logo">StockMan</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#stock-levels">Levels</a></li>
+                    <li><a href="#add-stock">Add</a></li>
+                    <li><a href="#remove-stock">Remove</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
     
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br>
+            <h3 class="header center black-text">Stock-Management System</h3>
+            <div class="row center">
+                <h5 class="header col s12 light">A simplified way to manage your inventory.</h5>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container scrollspy" id="stock-levels">
+        <div class="section">
+            <div class="row" id="products"></div>
+        </div>
+    </div>
+    <div class="scrollspy" id="add-stock"></div>
+    <div class="section">
+        <div class="row add-bar">
+            <div class="col l12 s12">
+                <h3 class="center white-text">Add Stock</h3>
+            </div>
+        </div>
+        <div class="row container">
+            <div class="col s12 l3"></div>
+            <form id="add-stock-form" class="col s12 l6" onsubmit=" return updateStock('addMessage')">
+                <div class="row">
+                    <div class="input-field">
+                        <i class="material-icons prefix">local_grocery_store</i>
+                        <select id="addCodeSelector">
+                        </select>
+                        <label>Select Product Code</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field">
+                        <i class="material-icons prefix">add_circle_outline</i>
+                        <input id="itemsReceived" type="number" class="validate" required>
+                        <label for="itemsReceived">Quantity Received</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field">
+                        <i class="material-icons prefix">attach_money</i>
+                        <input id="itemPrice" type="number" class="validate" min="1" step="any" required>
+                        <label for="itemPrice">Price</label>
+                    </div>
+                </div>
+                <div class="row center">
+                    <div class="center">
+                        <button id="addItemsBtn" class="btn waves-effect" type="submit" name="">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+                <div id="addMessageBox" class="row"></div>
+            </form>
+            <div class="scol s12 l3"></div>
+        </div>
+    </div>
+
+
+    <div class="scrollspy" id="remove-stock"></div>
+    <div class="section">
+        <div class="row remove-bar">
+            <div class="col l12 s12">
+                <h3 class="center white-text">Remove Stock</h3>
+            </div>
+        </div>
+        <div class="row container">
+            <div class="col s12 l3"></div>
+            <form id="remove-stock-form" class="col s12 l6" onsubmit="return updateStock('removeMessage')">
+                <div class="row">
+                    <div class="input-field">
+                        <i class="material-icons prefix">local_grocery_store</i>
+                        <select id="removeCodeSelector">
+                        </select>
+                        <label>Select Product Code</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field">
+                        <i class="material-icons prefix">mail</i>
+                        <input id="customerEmail" type="email" class="validate" required aria-required="true">
+                        <label for="customerEmail">Email</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field">
+                        <i class="material-icons prefix">remove_circle_outline</i>
+                        <input id="itemsToRemove" type="number" class="validate" required>
+                        <label for="itemsToRemove">Quantity To Remove</label>
+                    </div>
+                </div>
+
+                <div class="row center">
+                    <div class="center">
+                    <button id="removeItemsBtn" class="btn waves-effect" type="submit" name="">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                    </div>
+                </div>
+                <div id="removeMessageBox" class="row"></div>
+            </form>
+            <div class="col s12 l3"></div>
+        </div>
+    </div>
+    <br><br>
+
+    <footer class="page-footer black">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by @vtrev</a>
+            </div>
+        </div>
+    </footer>
+    <!--  Scripts-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/StockManager.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+
 </body>
+
 </html>
