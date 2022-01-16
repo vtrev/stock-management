@@ -59,9 +59,9 @@
         <nav class="black darken-1" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#home" class="brand-logo">StockMan</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#stock-levels">Levels</a></li>
-                    <li><a href="#add-stock">Add</a></li>
-                    <li><a href="#remove-stock">Remove</a></li>
+                    <li><a href="#stockLevels">Levels</a></li>
+                    <li><a href="#removeStock">Add</a></li>
+                    <li><a href="#removeStock">Remove</a></li>
                 </ul>
             </div>
         </nav>
@@ -78,22 +78,22 @@
         </div>
     </div>
     <br>
-    <div class="container scrollspy" id="stock-levels">
+    <div class="container scrollspy" id="stockLevels">
         <div class="section">
             <div class="row" id="products"></div>
         </div>
     </div>
-    <div class="scrollspy" id="add-stock"></div>
+    <div class="scrollspy" id="removeStock"></div>
     <div class="section">
-        <div class="row add-bar">
+        <div class="row addBar">
             <div class="col l12 s12">
                 <h3 class="center white-text">Add Stock</h3>
             </div>
         </div>
         <div class="row container">
             <br><br>
-            <div class="col s12 l3"></div>
-            <form id="add-stock-form" class="col s12 m10 l6" onsubmit=" return updateStock('addMessage')">
+            <div class="col s12 m1 l3"></div>
+            <form id="addStockForm" class="col s12 m10 l6" onsubmit=" return updateStock('addMessage')">
                 <div class="row">
                     <div class="input-field">
                         <i class="material-icons prefix">local_grocery_store</i>
@@ -125,22 +125,22 @@
                 </div>
                 <div id="addMessageBox" class="row"></div>
             </form>
-            <div class="scol s12 l3"></div>
+            <div class="scol s12 m1 l3"></div>
         </div>
     </div>
 
 
-    <div class="scrollspy" id="remove-stock"></div>
+    <div class="scrollspy" id="removeStock"></div>
     <div class="section">
-        <div class="row remove-bar">
+        <div class="row removeBar">
             <div class="col l12 s12">
                 <h3 class="center white-text">Remove Stock</h3>
             </div>
         </div>
         <div class="row container">
             <br><br>
-            <div class="col s12 l3"></div>
-            <form id="remove-stock-form" class="col s12 m10 l6" onsubmit="return updateStock('removeMessage')">
+            <div class="col s12 m1 l3"></div>
+            <form id="removeStockForm" class="col s12 m10 l6" onsubmit="return updateStock('removeMessage')">
                 <div class="row">
                     <div class="input-field">
                         <i class="material-icons prefix">local_grocery_store</i>
@@ -174,11 +174,11 @@
                 <div id="removeMessageBox" class="row"></div>
             </form>
             <br>
-            <div class="col s12 l3"></div>
+            <div class="col s12 m1 l3"></div>
         </div>
       
         <div class="fixed-action-btn direction-top active">
-            <a href="#stock-levels" class="btn-floating">
+            <a href="#stockLevels" class="btn-floating">
                 <i class="large material-icons" style="pointer-events:none;">navigation</i>
             </a>
         </div>

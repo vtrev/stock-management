@@ -31,11 +31,11 @@ let updateStock = function (message) {
 
   if (message == "addMessage") {
     var res = stockManager.addStockItems(addCodeSelector.value, itemsReceived.value, itemPrice.value);
-    document.querySelector('#add-stock-form').reset();
+    document.querySelector('#addStockForm').reset();
   }
   if (message == "removeMessage") {
     var res = stockManager.removeStockItems(removeCodeSelector.value, itemsToRemove.value, customerEmail.value);
-    document.querySelector('#remove-stock-form').reset();
+    document.querySelector('#removeStockForm').reset();
 
   }
   let messageBoxElement = document.querySelector(`#${message}Box`);
