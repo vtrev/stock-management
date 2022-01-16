@@ -1,7 +1,6 @@
 
 // JS to interact with the DOM
 
-
 document.addEventListener('DOMContentLoaded', function () {
   var select = document.querySelectorAll('select');
    M.FormSelect.init(select, {});

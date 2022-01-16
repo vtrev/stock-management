@@ -7,7 +7,7 @@ class StockManager {
         this.customerEmailAdresses = [];
     };
 
-    addStockItems(productCode, quantity, price) {
+    addStockItems(productCode, quantity, price){
 
         if (this.validateProductCode(productCode)) {
             let quantityInt = parseInt(quantity);
