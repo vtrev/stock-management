@@ -31,6 +31,9 @@ form {
 button {
   background-color: #26a69a !important;
 }
+.charts{
+  color: #26a69a !important;
+}
 
 
 #addMessageBox,
