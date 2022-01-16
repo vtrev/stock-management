@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script type="text/x-template" id="stockLevelsTemplate">
         {{#each products}}
-        <div class="col s12 m4">
+        <div class="col s12 m4 l4">
             <div class="icon-block">
                 <h2 class="center"><i class="material-icons charts">insert_chart</i></h2>
                 <h5 class="center">{{this.name}}</h5>
@@ -66,10 +66,9 @@
             </div>
         </nav>
     </div>
-    
+
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
-            <br>
             <h3 class="header center black-text">Stock-Management System</h3>
             <div class="row center">
                 <h5 class="header col s12 light">A simplified Stock-Management System for your inventory.</h5>
@@ -77,19 +76,16 @@
             <hr>
         </div>
     </div>
-    <div class="row container center">
-        <br>
-        <br>
-        <div class="col l12 s12 m12 center">
-            <h3>Inventory Overview</h3>
-        </div>
-    </div>
+    <br>
+    <br>
+
     <br>
     <div class="container scrollspy" id="stockLevels">
         <div class="section">
             <div class="row" id="products"></div>
         </div>
     </div>
+    <br><br>
     <div class="scrollspy" id="addStock"></div>
     <div class="section">
         <div class="row addBar">
@@ -119,7 +115,7 @@
                 <div class="row">
                     <div class="input-field">
                         <i class="material-icons prefix rand">R</i>
-                        <input id="itemPrice" type="number" class="validate" min="1" step="any" required>
+                        <input id="itemPrice" type="number" class="validate" min="0.01" step="any" required>
                         <label for="itemPrice">Price</label>
                     </div>
                 </div>
@@ -173,9 +169,9 @@
                 </div>
                 <div class="row center">
                     <div class="center col l12 s12">
-                    <button id="removeItemsBtn" class="btn waves-effect" type="submit" name="">Submit
-                        <i class="material-icons right">send</i>
-                    </button>
+                        <button id="removeItemsBtn" class="btn waves-effect" type="submit" name="">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
                     </div>
                 </div>
                 <div id="removeMessageBox" class="row"></div>
@@ -183,7 +179,7 @@
             <br>
             <div class="col s12 m1 l3"></div>
         </div>
-      
+
         <div class="fixed-action-btn direction-top active">
             <a href="#stockLevels" class="btn-floating">
                 <i class="large material-icons" style="pointer-events:none;">navigation</i>
