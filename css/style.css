@@ -1,0 +1,63 @@
+/* Custom Stylesheet / materialize override */
+
+body {
+  font-family: 'Questrial', sans-serif;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+form {
+  display: inline-block;
+}
+
+.add-bar,
+.remove-bar,
+button {
+  background-color: #26a69a !important;
+}
+
+footer {
+  min-height: 200px
+}
+
+
+#addMessageBox,
+#removeMessageBox {
+  min-height: 100px !important;
+}
+
+.alert .card-content span {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-right: 4px;
+}
+
+.card .card-content {
+  padding: 10px !important;
+}
+
+.alert .card-content .material-icons {
+  font-size: 1.5em;
+  position: relative;
+  top: 5px;
+  margin-right: 0.5em;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
