@@ -1,23 +1,25 @@
-
 // JS to interact with the DOM
 
 document.addEventListener('DOMContentLoaded', function () {
   var select = document.querySelectorAll('select');
-   M.FormSelect.init(select, {});
+  M.FormSelect.init(select, {});
   var scrollspy = document.querySelectorAll('.scrollspy');
   M.ScrollSpy.init(scrollspy, {
     scrollOffset: 48
   });
 
 });
-// products can be changed at initialization, ensure the price is a number fixed to 2 decimal places
-stockManager = new StockManager({
-  "iPhone 7": [{"price": Number(4999).toFixed(2),
-                "quantity":80
-}],
-  "Galaxy s5": [{"price": Number(6999.56).toFixed(2),
-  "quantity":50
-}],
+// products can be changed at initialisation, ensure the price is a number fixed to 2 decimal places if adding items manually.
+// this method of adding stock is optional, the stock items can be empty at init like the Samsung tablet.
+let stockManager = new StockManager({
+  "iPhone 7": [{
+    "price": Number(4999).toFixed(2),
+    "quantity": 80
+  }],
+  "Galaxy s5": [{
+    "price": Number(6999.56).toFixed(2),
+    "quantity": 50
+  }],
   "Samsung Tablet": []
 });
 
@@ -45,16 +47,16 @@ let updateStock = function (message) {
   let messageBoxElement = document.querySelector(`#${message}Box`);
   var messageBoxTemplateSource = document.querySelector('#messageBoxTemplate').innerHTML;
   var messageBoxTemplate = Handlebars.compile(messageBoxTemplateSource);
-  let code = res.startsWith("Error") ? "red" :"green";
-  let icon = res.startsWith("Error") ? "report" :"check_circle";
+  let code = res.startsWith("Error") ? "red" : "green";
+  let icon = res.startsWith("Error") ? "report" : "check_circle";
 
   let params = {
-    "code":code,
-    "class":message,
-    "icon" :icon,
-    "res":res
+    "code": code,
+    "class": message,
+    "icon": icon,
+    "res": res
   }
-  
+
   var messageBoxHtml = messageBoxTemplate(params);
   messageBoxElement.innerHTML = messageBoxHtml;
 
