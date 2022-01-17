@@ -10,10 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
-// products can be changed at anytime
+// products can be changed at initialization, ensure the price is a number fixed to 2 decimal places
 stockManager = new StockManager({
-  "iPhone 7": [],
-  "Galaxy s5": [],
+  "iPhone 7": [{"price": Number(4999).toFixed(2),
+                "quantity":80
+}],
+  "Galaxy s5": [{"price": Number(6999.56).toFixed(2),
+  "quantity":50
+}],
   "Samsung Tablet": []
 });
 
