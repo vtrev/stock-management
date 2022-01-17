@@ -7,7 +7,7 @@ class StockManager {
         this.customerEmailAdresses = [];
     };
 
-    addStockItems(productCode, quantity, price){
+    addStockItems(productCode, quantity, price) {
 
         if (this.validateProductCode(productCode)) {
             let quantityInt = parseInt(quantity);
@@ -15,7 +15,7 @@ class StockManager {
             if (this.validatePrice(price) && this.validateQuantity(quantity)) {
                 this.products[`${productCode}`].push({
                     "quantity": Number(`${quantityInt}`),
-                    "price": Number(`${price}`)
+                    "price": parseFloat(`${price}`).toFixed(2)
                 });
                 return `Added ${quantityInt} items of ${productCode}  @R${price} to the system successfully.`;
             }
@@ -27,13 +27,13 @@ class StockManager {
     removeStockItems(productCode, quantity, emailAddress) {
 
         if (!this.customerEmailAdresses.includes(emailAddress)) {
-            
+
             if (this.validateProductCode(productCode) && this.validateQuantity(quantity)) {
                 let quantityToRemove = parseInt(quantity);
                 let items = this.products[`${productCode}`].reverse(); //reverse array to get FIFO
                 let sumAvailable = 0;
                 let j = 1;
-                
+
                 for (let i = items.length - 1; i >= 0; i--) {
                     sumAvailable += Number(items[i].quantity);
 
@@ -49,9 +49,10 @@ class StockManager {
                                 return `${quantity} items of ${productCode} have been removed successfully.`
 
                             } else {
-                                quantityToRemove -= quantityAtIndex
-                                quantityAtIndex -= quantityAtIndex
+                                quantityToRemove -= quantityAtIndex;
+                                quantityAtIndex -= quantityAtIndex;
                                 items[items.length - k].quantity = quantityAtIndex
+
                             }
                         }
                     }
@@ -71,16 +72,28 @@ class StockManager {
         let products = Object.keys(this.products);
         products.forEach((product) => {
             let totalItemQauntity = 0;
-            let sumOfItemPrices = 0;
-            let productArrayLength = Number(this.products[product].length);
+            let sumOfItemPrices = 0.00;
+            let averagePrice = 0;
 
-            if (productArrayLength > 0) {
-                this.products[product].forEach((item) => {
-                    totalItemQauntity += item.quantity;
-                    sumOfItemPrices += item.price;
+            // exclude zero quantity for average calculation, items out of stock left in products can be used for history.
+            let productArrayWithoutEmptyStock = this.products[`${product}`].filter((item) => Number(item.quantity) > 0);
+
+            // use the price of the item as average where there is only one item.
+            if (productArrayWithoutEmptyStock.length == 1) {
+                totalItemQauntity = productArrayWithoutEmptyStock[0].quantity;
+                averagePrice = productArrayWithoutEmptyStock[0].price;
+                stockLevels[product] = {
+                    "quantity": totalItemQauntity,
+                    "averagePrice": averagePrice,
+                    "name": product
+                }
+            } else if (productArrayWithoutEmptyStock.length > 1) { //sum up the totals and calculate average for more than one item
+                productArrayWithoutEmptyStock.forEach((item) => {
+                    totalItemQauntity += Number(item.quantity);
+                    sumOfItemPrices += Number(item.price);
                 });
 
-                let averagePrice = (sumOfItemPrices / productArrayLength).toFixed(2);
+                averagePrice = parseFloat(sumOfItemPrices / productArrayWithoutEmptyStock.length).toFixed(2);
                 stockLevels[product] = {
                     "quantity": totalItemQauntity,
                     "averagePrice": averagePrice,
