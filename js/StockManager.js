@@ -9,10 +9,10 @@ class StockManager {
 
     addStockItems(productCode, quantity, price) {
 
-        if (this.validateProductCode(productCode)) {
+        if (this.#validateProductCode(productCode)) {
             let quantityInt = parseInt(quantity);
 
-            if (this.validatePrice(price) && this.validateQuantity(quantity)) {
+            if (this.#validatePrice(price) && this.#validateQuantity(quantity)) {
                 this.products[`${productCode}`].push({
                     "quantity": Number(`${quantityInt}`),
                     "price": parseFloat(`${price}`).toFixed(2)
@@ -28,7 +28,7 @@ class StockManager {
 
         if (!this.customerEmailAdresses.includes(emailAddress)) {
 
-            if (this.validateProductCode(productCode) && this.validateQuantity(quantity)) {
+            if (this.#validateProductCode(productCode) && this.#validateQuantity(quantity)) {
                 let quantityToRemove = parseInt(quantity);
                 let items = this.products[`${productCode}`].reverse(); //reverse array to get FIFO
                 let sumAvailable = 0;
@@ -87,34 +87,31 @@ class StockManager {
         return stockLevels;
     }
 
-
-        #buildStockLevels(quantity, averagePrice, productName){
-        let stockLevels = {}
-        stockLevels["quantity"] = quantity > 1 ? quantity : "Out of stock";
-        if (averagePrice > 0) {
-            stockLevels["averagePrice"] = averagePrice;
-        }
-        stockLevels["name"] = productName;
-
-        return stockLevels;
-    }
-
-
     getProductCodes() {
         return Object.keys(this.products);
     }
 
-    //validations
+    //helper methods
 
-    validateProductCode(productCode) {
+    #validateProductCode(productCode) {
         return (Object.keys(this.products).includes(productCode))
     }
 
-    validateQuantity(quantity) {
+    #validateQuantity(quantity) {
         return parseInt(quantity) > 0 ? true : false;
     }
 
-    validatePrice(price) {
+    #validatePrice(price) {
         return Number(price) > 0 ? true : false;
+    }
+
+    #buildStockLevels(quantity, averagePrice, productName){
+        let productStockLevels = {}
+        productStockLevels["quantity"] = quantity > 1 ? quantity : "Out of stock";
+        if (averagePrice > 0) {
+            productStockLevels["averagePrice"] = averagePrice;
+        }
+        productStockLevels["name"] = productName;
+        return productStockLevels;
     }
 }
