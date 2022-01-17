@@ -52,7 +52,6 @@ class StockManager {
                                 quantityToRemove -= quantityAtIndex;
                                 quantityAtIndex -= quantityAtIndex;
                                 items[items.length - k].quantity = quantityAtIndex
-
                             }
                         }
                     }
@@ -77,37 +76,29 @@ class StockManager {
 
             // exclude zero quantity for average calculation, items out of stock left in products can be used for history.
             let productArrayWithoutEmptyStock = this.products[`${product}`].filter((item) => Number(item.quantity) > 0);
-
-            // use the price of the item as average where there is only one item.
-            if (productArrayWithoutEmptyStock.length == 1) {
-                totalItemQauntity = productArrayWithoutEmptyStock[0].quantity;
-                averagePrice = productArrayWithoutEmptyStock[0].price;
-                stockLevels[product] = {
-                    "quantity": totalItemQauntity,
-                    "averagePrice": averagePrice,
-                    "name": product
-                }
-            } else if (productArrayWithoutEmptyStock.length > 1) { //sum up the totals and calculate average for more than one item
-                productArrayWithoutEmptyStock.forEach((item) => {
-                    totalItemQauntity += Number(item.quantity);
-                    sumOfItemPrices += Number(item.price);
+            productArrayWithoutEmptyStock.forEach((item) => {
+                totalItemQauntity += Number(item.quantity);
+                sumOfItemPrices += Number(item.price);
                 });
 
-                averagePrice = parseFloat(sumOfItemPrices / productArrayWithoutEmptyStock.length).toFixed(2);
-                stockLevels[product] = {
-                    "quantity": totalItemQauntity,
-                    "averagePrice": averagePrice,
-                    "name": product
-                }
-            } else {
-                stockLevels[product] = {
-                    "quantity": "Out of stock",
-                    "name": product
-                }
-            }
+            averagePrice = parseFloat(sumOfItemPrices / productArrayWithoutEmptyStock.length).toFixed(2);
+            stockLevels[product] = this.#buildStockLevels(totalItemQauntity, averagePrice, product);
         });
         return stockLevels;
     }
+
+
+        #buildStockLevels(quantity, averagePrice, productName){
+        let stockLevels = {}
+        stockLevels["quantity"] = quantity > 1 ? quantity : "Out of stock";
+        if (averagePrice > 0) {
+            stockLevels["averagePrice"] = averagePrice;
+        }
+        stockLevels["name"] = productName;
+
+        return stockLevels;
+    }
+
 
     getProductCodes() {
         return Object.keys(this.products);
