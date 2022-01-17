@@ -43,7 +43,6 @@ describe('addStockItems', () => {
 
     it('Should add stock for valid product code, quantity and price', () => {
         stockManager.addStockItems("Product 1", 12, 16.99);
-
         assert.deepEqual(stockManager.getStockLevels(),{
                 "Product 1": {
                     "quantity": 12,
@@ -146,7 +145,7 @@ describe('removeStockItems', () => {
         assert.deepEqual(stockManager.getStockLevels(), {
             "Product 1": {
                 "quantity": 5,
-                "averagePrice": "42.33",
+                "averagePrice": "10.00",
                 "name": "Product 1"
             },
             "Product 2": {
@@ -185,6 +184,7 @@ describe('removeStockItems', () => {
 
 
 describe('getStockLevels', () => {
+
     let stockManager = new StockManager({
         "Product 1": [],
         "Product 2": [],
