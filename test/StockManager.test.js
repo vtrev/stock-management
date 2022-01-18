@@ -68,13 +68,13 @@ describe('addStockItems', () => {
 
     it('Should return an error when input is invalid for quantity', () => {
 
-        assert.equal(stockManager.addStockItems("Product 1", "String Quantity", 56.00), "Error : Invalid input, please check your quantity and price.")
+        assert.equal(stockManager.addStockItems("Product 1", "String Quantity", 56.00), "Error : Invalid input, please check your quantity.")
     });
 
 
     it('Should return an error when input is invalid for price', () => {
 
-        assert.equal(stockManager.addStockItems("Product 1", 9, "non valid price"), "Error : Invalid input, please check your quantity and price.")
+        assert.equal(stockManager.addStockItems("Product 1", 9, "non valid price"), "Error : Invalid input, please check your price.")
     });
 });
 
@@ -166,7 +166,7 @@ describe('removeStockItems', () => {
             "Product 3": []
         });
 
-        assert.equal(stockManager.removeStockItems("Some Product Code", 12, 45.99), "Error : Invalid Input, please verify your product code and quantity.")
+        assert.equal(stockManager.removeStockItems("Some Product Code", 12, 45.99), "Error : Invalid Input, please verify your product code.")
     });
 
 
@@ -177,7 +177,7 @@ describe('removeStockItems', () => {
             "Product 3": []
         });
 
-        assert.equal(stockManager.removeStockItems("Product 1", "String Quantity", 56.00), "Error : Invalid Input, please verify your product code and quantity.")
+        assert.equal(stockManager.removeStockItems("Product 1", "String Quantity", 56.00), "Error : Invalid Input, please verify your quantity.")
     });
 
 });
