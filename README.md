@@ -1,9 +1,11 @@
 # Stock-Management System
 
 StockMan is a simple app that helps you manage your inventory by displaying stock levels, add items and remove items from the system.
-## Installation
+## How to run
 
 Download source and run index.html
+
+NB: Internet connection is needed to fetch some files from a cdn.
 
 
 ## Tests
