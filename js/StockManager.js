@@ -2,7 +2,7 @@ class StockManager {
 
     constructor(productsIn) {
         if (Object.keys(productsIn).length !== 3)
-            throw new Error('Only 3 Products can be added to the system.')
+            throw new Error('Only 3 Products can be added to the system.');
         this.products = productsIn;
         this.customerEmailAdresses = [];
     };
@@ -35,15 +35,15 @@ class StockManager {
 
     // validate inputs
     if (this.customerEmailAdresses.includes(emailAddress)) {
-        return `Error : Email address ${emailAddress} has already been used to purchase on this system.`
+        return `Error : Email address ${emailAddress} has already been used to purchase on this system.`;
     }
 
     if (!this.#validateProductCode(productCode)) {
-        return `Error : Invalid Input, please verify your product code.`
+        return `Error : Invalid Input, please verify your product code.`;
     }
 
     if (!this.#validateQuantity(quantity)) {
-        return `Error : Invalid Input, please verify your quantity.`
+        return `Error : Invalid Input, please verify your quantity.`;
     }
 
     let quantityToRemove = parseInt(quantity);
@@ -61,8 +61,8 @@ class StockManager {
                     quantityAtIndex -= quantityToRemove;
                     quantityToRemove -= quantityToRemove;
                     items[items.length - k].quantity = quantityAtIndex;
-                    this.customerEmailAdresses.push(emailAddress) //blacklist email address
-                    return `${quantity} item(s) of ${productCode} have been removed successfully.`
+                    this.customerEmailAdresses.push(emailAddress); //blacklist email address
+                    return `${quantity} item(s) of ${productCode} have been removed successfully.`;
                 } else {
                     quantityToRemove -= quantityAtIndex;
                     items[items.length - k].quantity = 0; // deplete available quantity
@@ -72,8 +72,8 @@ class StockManager {
         j++;
     }
 
-    let insufficientStockRes =  `Error : Not enough item(s) to remove, you can only remove a maximum of ${sumAvailable} item(s) of ${productCode}.`
-    let outOfStockRes = `Error : ${productCode} is out of stock.`
+    let insufficientStockRes =  `Error : Not enough item(s) to remove, you can only remove a maximum of ${sumAvailable} item(s) of ${productCode}.`;
+    let outOfStockRes = `Error : ${productCode} is out of stock.`;
     return sumAvailable > 0 ? insufficientStockRes : outOfStockRes;
 
     }
@@ -107,7 +107,7 @@ class StockManager {
 
     //helper methods
     #validateProductCode(productCode) {
-        return (Object.keys(this.products).includes(productCode))
+        return (Object.keys(this.products).includes(productCode));
     }
 
     #validateQuantity(quantity) {
@@ -119,7 +119,7 @@ class StockManager {
     }
 
     #buildStockLevels(quantity, averagePrice, productName) {
-        let productStockLevels = {}
+        let productStockLevels = {};
         productStockLevels["quantity"] = quantity > 0 ? quantity : "Out of stock";
         if (averagePrice > 0) {
             productStockLevels["averagePrice"] = averagePrice;

@@ -84,7 +84,7 @@ let showLevels = function () {
   var productsElement = document.querySelector('#products');
   var productsTemplateSource = document.querySelector("#stockLevelsTemplate").innerHTML;
   var productsTemplate = Handlebars.compile(productsTemplateSource);
-  let products = stockManager.getStockLevels()
+  let products = stockManager.getStockLevels();
   var productsHtml = productsTemplate({
     products
   });
