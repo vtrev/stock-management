@@ -27,7 +27,7 @@ class StockManager {
             "quantity": Number(`${quantityInt}`),
             "price": parseFloat(`${price}`).toFixed(2)
         });
-        return `Added ${quantityInt} items of ${productCode}  @R${price} to the system successfully.`;
+        return `Added ${quantityInt} item(s) of ${productCode}  @R${price} to the system successfully.`;
     }
 
 
@@ -62,7 +62,7 @@ class StockManager {
                     quantityToRemove -= quantityToRemove;
                     items[items.length - k].quantity = quantityAtIndex;
                     this.customerEmailAdresses.push(emailAddress) //blacklist email address
-                    return `${quantity} items of ${productCode} have been removed successfully.`
+                    return `${quantity} item(s) of ${productCode} have been removed successfully.`
                 } else {
                     quantityToRemove -= quantityAtIndex;
                     items[items.length - k].quantity = 0; // deplete available quantity
@@ -73,7 +73,7 @@ class StockManager {
     }
 
     if (sumAvailable == 0) {
-        return `Error : Not enough items to remove, you can only remove a maximum of ${sumAvailable} items of ${productCode}.`
+        return `Error : Not enough item(s) to remove, you can only remove a maximum of ${sumAvailable} item(s) of ${productCode}.`
     }
 }
 

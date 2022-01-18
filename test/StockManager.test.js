@@ -90,7 +90,7 @@ describe('removeStockItems', () => {
         });
 
         stockManager.addStockItems("Product 1", 10, 56.99);
-        assert.equal(stockManager.removeStockItems("Product 1", 6, "japal@mail.ru"), "6 items of Product 1 have been removed successfully.")
+        assert.equal(stockManager.removeStockItems("Product 1", 6, "japal@mail.ru"), "6 item(s) of Product 1 have been removed successfully.")
         // verify reduction by checking current stock level is reduced by 6 items
         assert.deepEqual(stockManager.getStockLevels(), {
                 "Product 1": {
@@ -120,7 +120,7 @@ describe('removeStockItems', () => {
         stockManager.addStockItems("Product 2", 15, 6.99);
         stockManager.addStockItems("Product 1", 5, 10.56);
 
-        assert.equal(stockManager.removeStockItems("Product 1", 4, "user@mail.com"), "4 items of Product 1 have been removed successfully.")
+        assert.equal(stockManager.removeStockItems("Product 1", 4, "user@mail.com"), "4 item(s) of Product 1 have been removed successfully.")
 
         //trying to buy items with same email address should result in an error
         assert.equal(stockManager.removeStockItems("Product 2", 6, "user@mail.com"), "Error : Email address user@mail.com has already been used to purchase on this system.")
@@ -139,7 +139,7 @@ describe('removeStockItems', () => {
         stockManager.addStockItems("Product 1", 5, 60.00);
         stockManager.addStockItems("Product 1", 15, 10.00);
 
-        assert.equal(stockManager.removeStockItems("Product 1", 25), "25 items of Product 1 have been removed successfully.")
+        assert.equal(stockManager.removeStockItems("Product 1", 25), "25 item(s) of Product 1 have been removed successfully.")
 
         // verify reduction by checking current stock level is reduced by 25 items from different prices
         assert.deepEqual(stockManager.getStockLevels(), {
