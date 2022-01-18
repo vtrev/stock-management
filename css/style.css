@@ -1,4 +1,4 @@
-/* Custom Stylesheet / materialize override */
+/* Custom Stylesheet and materialize override */
 
 body {
   font-family: 'Questrial', sans-serif;
@@ -59,7 +59,7 @@ button {
 }
 
 .rand{
-  font-size: 2.6rem !important;
+  font-size: 2.4rem !important;
 }
 
 .btn-floating {
