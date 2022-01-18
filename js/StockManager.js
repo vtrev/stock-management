@@ -72,32 +72,33 @@ class StockManager {
         j++;
     }
 
-    if (sumAvailable == 0) {
-        return `Error : Not enough item(s) to remove, you can only remove a maximum of ${sumAvailable} item(s) of ${productCode}.`
+    let insufficientStockRes =  `Error : Not enough item(s) to remove, you can only remove a maximum of ${sumAvailable} item(s) of ${productCode}.`
+    let outOfStockRes = `Error : ${productCode} is out of stock.`
+    return sumAvailable > 0 ? insufficientStockRes : outOfStockRes;
+
     }
-}
 
-getStockLevels() {
+    getStockLevels() {
 
-    let stockLevels = {}
-    let products = Object.keys(this.products);
-    products.forEach((product) => {
-        let totalItemQauntity = 0;
-        let sumOfItemPrices = 0.00;
-        let averagePrice = 0;
+        let stockLevels = {}
+        let products = Object.keys(this.products);
+        products.forEach((product) => {
+            let totalItemQauntity = 0;
+            let sumOfItemPrices = 0.00;
+            let averagePrice = 0;
 
-        // exclude zero quantity for average calculation, items out of stock left in products can be used for history.
-        let productArrayWithoutEmptyStock = this.products[`${product}`].filter((item) => Number(item.quantity) > 0);
-        productArrayWithoutEmptyStock.forEach((item) => {
-            totalItemQauntity += Number(item.quantity);
-            sumOfItemPrices += Number(item.price);
+            // exclude zero quantity for average calculation, items out of stock left in products can be used for history.
+            let productArrayWithoutEmptyStock = this.products[`${product}`].filter((item) => Number(item.quantity) > 0);
+            productArrayWithoutEmptyStock.forEach((item) => {
+                totalItemQauntity += Number(item.quantity);
+                sumOfItemPrices += Number(item.price);
+            });
+
+            averagePrice = parseFloat(sumOfItemPrices / productArrayWithoutEmptyStock.length).toFixed(2);
+            stockLevels[product] = this.#buildStockLevels(totalItemQauntity, averagePrice, product);
         });
-
-        averagePrice = parseFloat(sumOfItemPrices / productArrayWithoutEmptyStock.length).toFixed(2);
-        stockLevels[product] = this.#buildStockLevels(totalItemQauntity, averagePrice, product);
-    });
-    return stockLevels;
-}
+        return stockLevels;
+    }
 
 
     getProductCodes() {
