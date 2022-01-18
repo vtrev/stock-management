@@ -27,7 +27,7 @@ class StockManager {
             "quantity": Number(`${quantityInt}`),
             "price": parseFloat(`${price}`).toFixed(2)
         });
-        return `Added ${quantityInt} item(s) of ${productCode}  @R ${price} to the system successfully.`;
+        return `Added ${quantityInt} item(s) of ${productCode}  @ R${price} to the system successfully.`;
     }
 
 
