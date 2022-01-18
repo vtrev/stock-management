@@ -32,3 +32,6 @@ Example :
 NB: Price should be cast into a number if manual stock is added, adding stock items manually is optional.
 ```
 
+## Live website
+
+https://vusi.world/stock-management/index.html
