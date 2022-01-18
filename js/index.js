@@ -61,7 +61,7 @@ let updateStock = function (message) {
   setTimeout(() => {
     document.querySelector(`.${message}`).innerHTML = "";
     document.querySelector(`#${message}`).classList.add("hidden");
-  }, 6000)
+  }, 6000);
   return false //prevent form from reloading page
 }
 
@@ -74,7 +74,7 @@ let showCodes = function () {
   let productCodes = stockManager.getProductCodes();
   var productCodesHtml = codeSelectorTemplate({
     productCodes
-  })
+  });
   addCodeSelectorElement.innerHTML = productCodesHtml;
   removeCodeSelectorElement.innerHTML = productCodesHtml;
 }
@@ -90,4 +90,4 @@ let showLevels = function () {
   });
   productsElement.innerHTML = productsHtml;
 }
-showLevels()
+showLevels();
