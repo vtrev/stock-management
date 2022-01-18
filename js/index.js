@@ -10,17 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 // products can be changed at initialisation, ensure the price is a number fixed to 2 decimal places if adding items manually.
-// this method of adding stock is optional, the stock items can be empty at init like the Samsung tablet.
+// this method of adding stock is optional, the stock items can be empty at init like the last 2 products.
 let stockManager = new StockManager({
-  "iPhone 7": [{
+  "iPhone 8": [{
     "price": Number(4999).toFixed(2),
-    "quantity": 80
+    "quantity": 12
   }],
-  "Galaxy s5": [{
-    "price": Number(6999.56).toFixed(2),
-    "quantity": 50
-  }],
-  "Samsung Tablet": []
+  "Galaxy s5": [],
+  "One Plus 9": []
 });
 
 let addItemsBtn = document.querySelector('#addItemsBtn');
