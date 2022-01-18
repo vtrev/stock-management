@@ -42,7 +42,8 @@ describe('addStockItems', () => {
     });
 
     it('Should add stock for valid product code, quantity and price', () => {
-        stockManager.addStockItems("Product 1", 12, 16.99);
+    
+        assert.equal(stockManager.addStockItems("Product 1", 12, 16.99),"Added 12 item(s) of Product 1  @ R16.99 to the system successfully.");    
         assert.deepEqual(stockManager.getStockLevels(),{
             "Product 1": {
                 "quantity": 12,
