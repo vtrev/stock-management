@@ -43,21 +43,21 @@ describe('addStockItems', () => {
 
     it('Should add stock for valid product code, quantity and price', () => {
         stockManager.addStockItems("Product 1", 12, 16.99);
-        assert.deepEqual(stockManager.getStockLevels(),{
-                "Product 1": {
-                    "quantity": 12,
-                    "averagePrice": "16.99",
-                    "name": "Product 1"
-                },
-                "Product 2": {
-                    "quantity": "Out of stock",
-                    "name": "Product 2"
-                },
-                "Product 3": {
-                    "quantity": "Out of stock",
-                    "name": "Product 3"
-                }
-            });
+        assert.deepEqual(stockManager.getStockLevels(), {
+            "Product 1": {
+                "quantity": 12,
+                "averagePrice": "16.99",
+                "name": "Product 1"
+            },
+            "Product 2": {
+                "quantity": "Out of stock",
+                "name": "Product 2"
+            },
+            "Product 3": {
+                "quantity": "Out of stock",
+                "name": "Product 3"
+            }
+        });
     });
 
     it('Should return an error for invalid product code', () => {
@@ -93,20 +93,20 @@ describe('removeStockItems', () => {
         assert.equal(stockManager.removeStockItems("Product 1", 6, "japal@mail.ru"), "6 item(s) of Product 1 have been removed successfully.")
         // verify reduction by checking current stock level is reduced by 6 items
         assert.deepEqual(stockManager.getStockLevels(), {
-                "Product 1": {
-                    "quantity": 4,
-                    "averagePrice": "56.99",
-                    "name": "Product 1"
-                },
-                "Product 2": {
-                    "quantity": "Out of stock",
-                    "name": "Product 2"
-                },
-                "Product 3": {
-                    "quantity": "Out of stock",
-                    "name": "Product 3"
-                }
-            });
+            "Product 1": {
+                "quantity": 4,
+                "averagePrice": "56.99",
+                "name": "Product 1"
+            },
+            "Product 2": {
+                "quantity": "Out of stock",
+                "name": "Product 2"
+            },
+            "Product 3": {
+                "quantity": "Out of stock",
+                "name": "Product 3"
+            }
+        });
     });
 
     it('Should reject  email address from removing stock more than once.', () => {
@@ -217,5 +217,15 @@ describe('getStockLevels', () => {
             }
         });
 
+    });
+
+    it('Should return an out of stock message if there is no items available', () => {
+        let stockManager = new StockManager({
+            "Product 1": [],
+            "Product 2": [],
+            "Product 3": []
+        });
+
+        assert.equal(stockManager.removeStockItems("Product 1", 2, 56.00), "Error : Product 1 is out of stock.")
     });
 });
