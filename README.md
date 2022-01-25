@@ -3,7 +3,11 @@
 StockMan is a simple app that helps you manage your inventory by displaying stock levels, add items and remove items from the system.
 ## How to run
 
-Download source and run index.html
+1. Setup TypeScript using instructions from : https://www.typescriptlang.org/download
+
+2. Download source, run tsc to envoke the TypeScript compiler.
+
+3. Open index.html file on browser to use the webpage.
 
 NB: Internet connection is needed to fetch some files from a cdn.
 
@@ -11,25 +15,27 @@ NB: Internet connection is needed to fetch some files from a cdn.
 ## Tests
 
 ```
-Run /test/test.html to view tests.
+Open /test/test.html in browser to view tests.
 
 Unit tests JavaScript at /test/StockManager.test.js
 ```
 
 ## Usage
-Initiate StockManager in index.js by adding stock to the constructor.
+Initiate StockManager in index.js by adding stock to the constructor using a map.
 
 Example :
 ```
- new StockManager({
-          "Product 1": [{"price": Number(399.99).toFixed(2),
-                "quantity":80
-            }],
-          "Product 2": [],
-          "Product 3": []
-         });
+let productMap = new Map();
+    productMap.set("Product Name", [{
+            "price": 10999,
+            "quantity": 20
+        }]);
+    productMap.set("Product 2", []);
+    productMap.set("Product 3", []);
 
-NB: Price should be cast into a number if manual stock is added, adding stock items manually is optional.
+ new StockManager(productMap);
+
+NB: Adding stock items manually is optional.
 ```
 
 ## Live website
