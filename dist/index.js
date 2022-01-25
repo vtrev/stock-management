@@ -38,7 +38,7 @@ let updateStock = function (message) {
     document.querySelector('#addStockForm').reset();
   }
   if (message == "removeMessage") {
-    var res = stockManager.removeStockItems(removeCodeSelector.value, Number(itemsToRemove.value), Number(customerEmail.value));
+    var res = stockManager.removeStockItems(removeCodeSelector.value, Number(itemsToRemove.value), customerEmail.value);
     document.querySelector('#removeStockForm').reset();
 
   }
