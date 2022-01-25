@@ -4,7 +4,7 @@ describe('StockManager', () => {
 
         let productMap = new Map();
         productMap.set("iPhone 8", [{
-            "price": Number(4999.00).toFixed(2),
+            "price":4999.00,
             "quantity": 12
         }]);
         productMap.set("Galaxy s5", []);
