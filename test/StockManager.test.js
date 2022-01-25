@@ -102,7 +102,6 @@ describe('removeStockItems', () => {
         stockManager.addStockItems("Product 1", 10, 56.99);
         assert.equal(stockManager.removeStockItems("Product 1", 6, "japal@mail.ru"), "6 item(s) of Product 1 have been removed successfully.")
         // verify reduction by checking current stock level is reduced by 6 items
-        console.log(stockManager.getStockLevels());
         assert.deepEqual(stockManager.getStockLevels(), {
             "Product 1": {
                 "quantity": 4,
